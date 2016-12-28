@@ -55,15 +55,6 @@ stripSuffix :: Eq a => [a]       -- ^ Suffix
                     -> Maybe [a] -- ^ Prefix
 stripSuffix = foldr (>=>) Just . map removeSuffix . reverse
 
-stripPrefix :: Eq a => [a]       -- ^ Prefix
-                    -> [a]       -- ^ Full list
-                    -> Maybe [a] -- ^ Suffix
-stripPrefix []      s     = Just s
-stripPrefix (_:_)  []     = Nothing
-stripPrefix (x:xs) (y:ys)
-    | x == y              = stripPrefix xs ys
-    | otherwise           = Nothing
-
 showUnlinesList :: Show a => [a] -> String
 showUnlinesList []     = "[\n]"
 showUnlinesList (x:xs) = '[' : ' ' : shows x (showl xs)
