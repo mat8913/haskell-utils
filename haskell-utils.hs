@@ -67,6 +67,3 @@ partitionLengths = foldr helper (1 :| [])
   where
     helper True  acc     = 1 <| acc
     helper False (a:|cc) = a+1 :| cc
-
-unfoldm :: Monad m => m (Maybe a) -> m [a]
-unfoldm x = fix $ \xs -> x >>= maybe (return []) ((<$> xs) . (:))
